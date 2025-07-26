@@ -143,6 +143,8 @@ async def generate_recipe(request: RecipeRequest):
             # Save to database
             await recipes_collection.insert_one(recipe_data)
             
+            # Remove the MongoDB _id field and return the clean recipe
+            recipe_data.pop('_id', None)  # Remove _id if it exists
             return recipe_data
             
         except json.JSONDecodeError:
