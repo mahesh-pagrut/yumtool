@@ -30,6 +30,17 @@ db = mongo_client[os.getenv("DB_NAME")]
 recipes_collection = db.recipes
 user_preferences_collection = db.user_preferences
 
+# Helper function to convert ObjectId to string
+def serialize_doc(doc):
+    if isinstance(doc, dict):
+        return {k: serialize_doc(v) for k, v in doc.items()}
+    elif isinstance(doc, list):
+        return [serialize_doc(item) for item in doc]
+    elif isinstance(doc, ObjectId):
+        return str(doc)
+    else:
+        return doc
+
 # Pydantic models
 class Recipe(BaseModel):
     id: str
