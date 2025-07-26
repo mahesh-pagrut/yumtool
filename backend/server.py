@@ -168,7 +168,8 @@ async def generate_recipe(request: RecipeRequest):
 async def get_recipes():
     try:
         recipes = await recipes_collection.find({}).to_list(50)
-        return recipes
+        # Serialize ObjectIds to strings
+        return [serialize_doc(recipe) for recipe in recipes]
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error fetching recipes: {str(e)}")
 
@@ -178,7 +179,7 @@ async def get_recipe(recipe_id: str):
         recipe = await recipes_collection.find_one({"id": recipe_id})
         if not recipe:
             raise HTTPException(status_code=404, detail="Recipe not found")
-        return recipe
+        return serialize_doc(recipe)
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error fetching recipe: {str(e)}")
 
