@@ -44,7 +44,7 @@ function App() {
 
   const toggleDietaryPreference = (pref) => {
     setDietaryPreferences(prev =>
-      prev.includes(pref) 
+      prev.includes(pref)
         ? prev.filter(p => p !== pref)
         : [...prev, pref]
     );
@@ -130,41 +130,58 @@ function App() {
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-xl">🍳</span>
+              {/* Custom icon avatar */}
+              <div className="flex items-center space-x-3">
+                {/* Logo Icon */}
+                <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-blue-500 rounded-full flex items-center justify-center shadow-md group hover:scale-105 transition-transform duration-300">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-6 h-6 text-white group-hover:text-yellow-300 transition-colors duration-300"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M9 12h6m2 8H7a2 2 0 01-2-2V7a2 2 0 012-2h2l1-2h4l1 2h2a2 2 0 012 2v11a2 2 0 01-2 2z"
+                    />
+                  </svg>
+                </div>
+
+                {/* Logo Text */}
+                <h1 className="text-2xl font-semibold text-gray-800 group-hover:text-transparent bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text transition-all duration-300">
+                  YumTool
+                </h1>
               </div>
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-                Smart Recipe Tool
-              </h1>
             </div>
+
             <nav className="flex space-x-6">
               <button
                 onClick={() => setActiveTab('recipe')}
-                className={`px-4 py-2 rounded-full transition-all ${
-                  activeTab === 'recipe' 
-                    ? 'bg-purple-600 text-white' 
+                className={`px-4 py-2 rounded-full transition-all ${activeTab === 'recipe'
+                    ? 'bg-purple-600 text-white'
                     : 'text-gray-600 hover:text-purple-600'
-                }`}
+                  }`}
               >
                 Recipe Generator
               </button>
               <button
                 onClick={() => setActiveTab('meal-plan')}
-                className={`px-4 py-2 rounded-full transition-all ${
-                  activeTab === 'meal-plan' 
-                    ? 'bg-purple-600 text-white' 
+                className={`px-4 py-2 rounded-full transition-all ${activeTab === 'meal-plan'
+                    ? 'bg-purple-600 text-white'
                     : 'text-gray-600 hover:text-purple-600'
-                }`}
+                  }`}
               >
                 Meal Planner
               </button>
               <button
                 onClick={() => setActiveTab('saved')}
-                className={`px-4 py-2 rounded-full transition-all ${
-                  activeTab === 'saved' 
-                    ? 'bg-purple-600 text-white' 
+                className={`px-4 py-2 rounded-full transition-all ${activeTab === 'saved'
+                    ? 'bg-purple-600 text-white'
                     : 'text-gray-600 hover:text-purple-600'
-                }`}
+                  }`}
               >
                 Saved Recipes
               </button>
@@ -177,8 +194,8 @@ function App() {
         {/* Hero Section */}
         <div className="text-center mb-12">
           <div className="relative">
-            <img 
-              src="https://images.unsplash.com/photo-1528712306091-ed0763094c98" 
+            <img
+              src="https://images.unsplash.com/photo-1528712306091-ed0763094c98"
               alt="Modern cooking"
               className="w-full h-64 object-cover rounded-3xl shadow-2xl"
             />
@@ -196,7 +213,7 @@ function App() {
           <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">
             What ingredients do you have?
           </h3>
-          
+
           <div className="flex flex-col md:flex-row gap-4 mb-6">
             <input
               type="text"
@@ -245,11 +262,10 @@ function App() {
                 <button
                   key={option}
                   onClick={() => toggleDietaryPreference(option)}
-                  className={`px-4 py-2 rounded-full transition-all ${
-                    dietaryPreferences.includes(option)
+                  className={`px-4 py-2 rounded-full transition-all ${dietaryPreferences.includes(option)
                       ? 'bg-purple-600 text-white'
                       : 'bg-gray-100 text-gray-700 hover:bg-purple-100'
-                  }`}
+                    }`}
                 >
                   {option}
                 </button>
@@ -331,7 +347,7 @@ function App() {
                   <span className="bg-green-100 px-3 py-1 rounded-full">📊 {generatedRecipe.difficulty}</span>
                 </div>
               </div>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <h5 className="text-lg font-semibold text-gray-700 mb-3">Ingredients:</h5>
@@ -344,7 +360,7 @@ function App() {
                     ))}
                   </ul>
                 </div>
-                
+
                 <div>
                   <h5 className="text-lg font-semibold text-gray-700 mb-3">Instructions:</h5>
                   <ol className="space-y-2">
@@ -359,7 +375,7 @@ function App() {
                   </ol>
                 </div>
               </div>
-              
+
               {generatedRecipe.nutritional_info && (
                 <div className="mt-6 p-4 bg-gradient-to-r from-purple-50 to-blue-50 rounded-xl">
                   <h5 className="text-lg font-semibold text-gray-700 mb-3">Nutritional Information:</h5>
@@ -415,8 +431,8 @@ function App() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {savedRecipes.map((recipe) => (
                   <div key={recipe.id} className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow">
-                    <img 
-                      src="https://images.unsplash.com/photo-1466637574441-749b8f19452f" 
+                    <img
+                      src="https://images.unsplash.com/photo-1466637574441-749b8f19452f"
                       alt="Recipe"
                       className="w-full h-32 object-cover rounded-xl mb-4"
                     />
